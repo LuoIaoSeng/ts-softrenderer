@@ -39,7 +39,7 @@ export class Camera {
         return new Matrix4([
             [1, 0, 0, 0],
             [0, 1, 0, 0],
-            [1, 0, 0, 0],
+            [0, 0, 0, 0],
             [0, 0, 0, 1],
         ])
     }

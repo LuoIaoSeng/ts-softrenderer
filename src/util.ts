@@ -1,5 +1,16 @@
-import { Vec3, Vec4 } from "./math";
-import { Face, Mesh } from "./model";
+import { Vec3, Vec4 } from "./math"
+import { Face, Mesh } from "./model"
+
+export enum KeyCode {
+    A = 65,
+    W = 87,
+    S = 83,
+    D = 68,
+    Q = 81,
+    E = 69,
+    Space = 32,
+    Shift = 16
+}
 
 export class FileLoader {
     static strToObj = (source: string) => {
@@ -40,7 +51,7 @@ export class Context {
         color: Vec4
     ) => {
         ctx.fillStyle = `rgba(${color.x}, ${color.y}, ${color.z}, ${color.w})`
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     }
     static drawLine = (
         ctx: CanvasRenderingContext2D,
