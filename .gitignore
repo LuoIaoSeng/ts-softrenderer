@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # Static assets
-src/assets
+src/assets/**
+!src/assets/default_cube.obj

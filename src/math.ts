@@ -149,13 +149,16 @@ export class Matrix2 {
         return m
     }
     static multiplyMat(m1: Matrix2, m2: Matrix2): Matrix2 {
-        let m = new Matrix2()
-        for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 2; j++) {
-                m.set(i, j, m1.get(i, j) * m2.get(j, i))
-            }
-        }
-        return m
+        return new Matrix2([
+            [
+                m1.get(0, 0) * m2.get(0, 0) + m1.get(0, 1) * m2.get(1, 0),
+                m1.get(0, 0) * m2.get(0, 1) + m1.get(0, 1) * m2.get(1, 1)
+            ],
+            [
+                m1.get(1, 0) * m2.get(0, 0) + m1.get(1, 1) * m2.get(1, 0),
+                m1.get(1, 0) * m2.get(0, 1) + m1.get(1, 1) * m2.get(1, 1)
+            ]
+        ])
     }
     static multiplyVec(mat: Matrix2, vec: Vec2): Vec2 {
         return new Vec2(
@@ -192,13 +195,22 @@ export class Matrix3 {
         return m
     }
     static multiplyMat(m1: Matrix3, m2: Matrix3): Matrix3 {
-        let m = new Matrix3()
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                m.set(i, j, m1.get(i, j) * m2.get(j, i))
-            }
-        }
-        return m
+        return new Matrix3([
+            [
+                m1.get(0, 0) * m2.get(0, 0) + m1.get(0, 1) * m2.get(1, 0) + m1.get(0, 2) * m2.get(2, 0),
+                m1.get(0, 0) * m2.get(0, 1) + m1.get(0, 1) * m2.get(1, 1) + m1.get(0, 2) * m2.get(2, 1),
+                m1.get(0, 0) * m2.get(0, 2) + m1.get(0, 1) * m2.get(1, 2) + m1.get(0, 2) * m2.get(3, 2),
+            ],
+            [
+                m1.get(1, 0) * m2.get(0, 0) + m1.get(1, 1) * m2.get(1, 0) + m1.get(1, 2) * m2.get(2, 0),
+                m1.get(1, 0) * m2.get(0, 1) + m1.get(1, 1) * m2.get(1, 1) + m1.get(1, 2) * m2.get(2, 1),
+                m1.get(1, 0) * m2.get(0, 2) + m1.get(1, 1) * m2.get(1, 2) + m1.get(1, 2) * m2.get(3, 2),],
+            [
+                m1.get(2, 0) * m2.get(0, 0) + m1.get(2, 1) * m2.get(1, 0) + m1.get(2, 2) * m2.get(2, 0),
+                m1.get(2, 0) * m2.get(0, 1) + m1.get(2, 1) * m2.get(1, 1) + m1.get(2, 2) * m2.get(2, 1),
+                m1.get(2, 0) * m2.get(0, 2) + m1.get(2, 1) * m2.get(1, 2) + m1.get(2, 2) * m2.get(3, 2),
+            ]
+        ])
     }
     static multiplyVec(mat: Matrix3, vec: Vec3): Vec3 {
         return new Vec3(
@@ -237,13 +249,32 @@ export class Matrix4 {
         return m
     }
     static multiplyMat(m1: Matrix4, m2: Matrix4): Matrix4 {
-        let m = new Matrix4()
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 4; j++) {
-                m.set(i, j, m1.get(i, j) * m2.get(j, i))
-            }
-        }
-        return m
+        return new Matrix4([
+            [
+                m1.get(0, 0) * m2.get(0, 0) + m1.get(0, 1) * m2.get(1, 0) + m1.get(0, 2) * m2.get(2, 0) + m1.get(0, 3) * m2.get(3, 0),
+                m1.get(0, 0) * m2.get(0, 1) + m1.get(0, 1) * m2.get(1, 1) + m1.get(0, 2) * m2.get(2, 1) + m1.get(0, 3) * m2.get(3, 1),
+                m1.get(0, 0) * m2.get(0, 2) + m1.get(0, 1) * m2.get(1, 2) + m1.get(0, 2) * m2.get(2, 2) + m1.get(0, 3) * m2.get(3, 2),
+                m1.get(0, 0) * m2.get(0, 3) + m1.get(0, 1) * m2.get(1, 3) + m1.get(0, 2) * m2.get(2, 3) + m1.get(0, 3) * m2.get(3, 3),
+            ],
+            [
+                m1.get(1, 0) * m2.get(0, 0) + m1.get(1, 1) * m2.get(1, 0) + m1.get(1, 2) * m2.get(2, 0) + m1.get(1, 3) * m2.get(3, 0),
+                m1.get(1, 0) * m2.get(0, 1) + m1.get(1, 1) * m2.get(1, 1) + m1.get(1, 2) * m2.get(2, 1) + m1.get(1, 3) * m2.get(3, 1),
+                m1.get(1, 0) * m2.get(0, 2) + m1.get(1, 1) * m2.get(1, 2) + m1.get(1, 2) * m2.get(2, 2) + m1.get(1, 3) * m2.get(3, 2),
+                m1.get(1, 0) * m2.get(0, 3) + m1.get(1, 1) * m2.get(1, 3) + m1.get(1, 2) * m2.get(2, 3) + m1.get(1, 3) * m2.get(3, 3),
+            ],
+            [
+                m1.get(2, 0) * m2.get(0, 0) + m1.get(2, 1) * m2.get(1, 0) + m1.get(2, 2) * m2.get(2, 0) + m1.get(2, 3) * m2.get(3, 0),
+                m1.get(2, 0) * m2.get(0, 1) + m1.get(2, 1) * m2.get(1, 1) + m1.get(2, 2) * m2.get(2, 1) + m1.get(2, 3) * m2.get(3, 1),
+                m1.get(2, 0) * m2.get(0, 2) + m1.get(2, 1) * m2.get(1, 2) + m1.get(2, 2) * m2.get(2, 2) + m1.get(2, 3) * m2.get(3, 2),
+                m1.get(2, 0) * m2.get(0, 3) + m1.get(2, 1) * m2.get(1, 3) + m1.get(2, 2) * m2.get(2, 3) + m1.get(2, 3) * m2.get(3, 3),
+            ],
+            [
+                m1.get(3, 0) * m2.get(0, 0) + m1.get(3, 1) * m2.get(1, 0) + m1.get(3, 2) * m2.get(2, 0) + m1.get(3, 3) * m2.get(3, 0),
+                m1.get(3, 0) * m2.get(0, 1) + m1.get(3, 1) * m2.get(1, 1) + m1.get(3, 2) * m2.get(2, 1) + m1.get(3, 3) * m2.get(3, 1),
+                m1.get(3, 0) * m2.get(0, 2) + m1.get(3, 1) * m2.get(1, 2) + m1.get(3, 2) * m2.get(2, 2) + m1.get(3, 3) * m2.get(3, 2),
+                m1.get(3, 0) * m2.get(0, 3) + m1.get(3, 1) * m2.get(1, 3) + m1.get(3, 2) * m2.get(2, 3) + m1.get(3, 3) * m2.get(3, 3),
+            ],
+        ])
     }
     static multiplyVec(mat: Matrix4, vec: Vec4): Vec4 {
         return new Vec4(
@@ -255,6 +286,14 @@ export class Matrix4 {
     }
 }
 
-export function linearInterpolation(x: number, y: number, a: number, b: number, v: number) {
+export function linearInterpolation(x: number, y: number, a: number, b: number, v: number) : number {
     return a + v * (b - a) / (y - x)
+}
+
+export function distance(p1: Vec4, p2: Vec4) : number {
+    let x = p2.x - p1.x
+    let y = p2.y - p1.y
+    let z = p2.z - p1.z
+    let w = p2.w - p1.w
+    return Math.sqrt(x * x + y * y + z * z + w * w)
 }

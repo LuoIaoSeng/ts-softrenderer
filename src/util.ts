@@ -70,12 +70,12 @@ export class Context {
         vertices: Array<Vec4>,
         face: Face
     ) => {
-        if(face.vertices.length === 3) {
+        if (face.vertices.length === 3) {
             let v1 = vertices[face.vertices[0].x - 1]
             let v2 = vertices[face.vertices[1].x - 1]
             let v3 = vertices[face.vertices[2].x - 1]
             this.drawTriangle(ctx, v1, v2, v3)
-        } else if(face.vertices.length === 4) {
+        } else if (face.vertices.length === 4) {
             let v1 = vertices[face.vertices[0].x - 1]
             let v2 = vertices[face.vertices[1].x - 1]
             let v3 = vertices[face.vertices[2].x - 1]
@@ -83,6 +83,23 @@ export class Context {
             this.drawTriangle(ctx, v1, v2, v3)
             this.drawTriangle(ctx, v3, v1, v4)
         }
+    }
+    static isContainedInTriangle = (
+        v1: Vec4,
+        v2: Vec4,
+        v3: Vec4,
+        v: Vec4
+    ) => {
+        let v12 = new Vec3(v2.x - v1.x, v2.y - v1.y, v2.z - v1.z)
+        let v23 = new Vec3(v3.x - v2.x, v3.y - v2.y, v3.z - v2.z)
+        let v31 = new Vec3(v1.x - v3.x, v1.y - v3.y, v1.z - v3.z)
+        let v1p = new Vec3(v.x - v1.x, v.y - v1.y, v.z - v1.z)
+        let v2p = new Vec3(v.x - v2.x, v.y - v2.y, v.z - v2.z)
+        let v3p = new Vec3(v.x - v3.x, v.y - v3.y, v.z - v3.z)
+        let c1 = Vec3.cross(v12, v1p)
+        let c2 = Vec3.cross(v23, v2p)
+        let c3 = Vec3.cross(v31, v3p)
+        return (c1.z > 0 && c2.z > 0 && c3.z > 0) || (c1.z < 0 && c2.z < 0 && c3.z < 0)
     }
     static drawTriangle = (
         ctx: CanvasRenderingContext2D,
